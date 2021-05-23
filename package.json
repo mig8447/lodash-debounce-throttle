@@ -1,0 +1,25 @@
+{
+  "name": "lodash-debounce-throttle",
+  "version": "4.17.5",
+  "description": "Lodash's debounce and throttle functions exported as UMD",
+  "main": "index.js",
+  "scripts": {
+    "build": "lodash -o dist/lodash-debounce-throttle.min.js -p include=debounce,throttle exports=umd",
+    "sync_version": "lodash_version=\"$( lodash --version )\"; npm --allow-same-version --no-git-tag-version version \"$lodash_version\"",
+    "postbuild": "npm run sync_version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mig8447/lodash-debounce-throttle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mig8447/lodash-debounce-throttle/issues"
+  },
+  "homepage": "https://github.com/mig8447/lodash-debounce-throttle#readme",
+  "devDependencies": {
+    "lodash-cli": "^4.17.5"
+  }
+}
