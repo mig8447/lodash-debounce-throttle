@@ -1,25 +1,41 @@
 {
-  "name": "lodash-debounce-throttle",
+  "name": "@mig8447/lodash-debounce-throttle",
   "version": "4.17.5",
   "description": "Lodash's debounce and throttle functions exported as UMD",
-  "main": "index.js",
+  "main": "dist/lodash-debounce-throttle.js",
   "scripts": {
     "build": "lodash -o dist/lodash-debounce-throttle.min.js -p include=debounce,throttle exports=umd",
     "sync_version": "lodash_version=\"$( lodash --version )\"; npm --allow-same-version --no-git-tag-version version \"$lodash_version\"",
-    "postbuild": "npm run sync_version"
+    "postbuild": "npm run sync_version",
+    "semantic-release": "source .env && export GITHUB_TOKEN NPM_TOKEN && semantic-release",
+    "release": "npm run build && npm run semantic-release --"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mig8447/lodash-debounce-throttle.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "mig8447",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mig8447/lodash-debounce-throttle/issues"
   },
   "homepage": "https://github.com/mig8447/lodash-debounce-throttle#readme",
   "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/github": "^7.2.3",
+    "@semantic-release/npm": "^7.1.3",
+    "@semantic-release/release-notes-generator": "^9.0.2",
+    "husky": "^4.3.8",
     "lodash-cli": "^4.17.5"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS && if grep -E '[^:]+!:' \"$HUSKY_GIT_PARAMS\" &>/dev/null; then echo \"Commit message must not cause a breaking change\"; exit 1; fi"
+    }
   }
 }
